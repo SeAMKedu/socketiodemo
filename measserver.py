@@ -29,6 +29,7 @@ def new_meas():
     mg = [m['alfa'], m['x'], m['y'], m['z']]
     # laitetaan listamuotoinen mittaus taulukkoon
     measurements.append(mg)
+    # lähetetään koko taulukko socket.io:n avulla html-sivulle
     s = json.dumps(measurements)
     socketio.emit('my_response', {'result': s})
     # palautetaan vastaanotettu tieto
