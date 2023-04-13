@@ -51,7 +51,7 @@ for rivi in tiedosto:
     
     # TEHTÄVÄ C) Etsi datasta "alfa" eli suunta, johon laite on menossa. Olisiko yaw?
     
-    time.sleep(1) # import time
+    time.sleep(0.1) # import time
     print(x, y)
     
 plt.plot(xx,yy)
