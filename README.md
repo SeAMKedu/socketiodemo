@@ -4,6 +4,8 @@ Tässä esimerkissä näytetään, miten mittausdataa voidaan näyttää web-sov
 
 ## Tiedostot
 
+### datageneratorclient.py
+
 Python-ohjelma datageneratorclient.py generoi simuloitua mittausdataa. Kuvitteellisen laitteen paikkakoordinaatit generoidaan trigonometristen funktioiden avulla:
 
 ```python
