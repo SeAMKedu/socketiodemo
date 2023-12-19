@@ -13,4 +13,11 @@ Python-ohjelma datageneratorclient.py generoi simuloitua mittausdataa. Kuvitteel
     measurement['y'] = 6 * math.sin(t) + (random.random() * 2 - 1)
     measurement['z'] = (random.random() * 2 - 1)
 ```
+Generoidut mittaukset lähetetään palvelimelle HTTP Postin avulla:
 
+```python
+    # muunna json-muotoon 
+    s = json.dumps(measurement)
+    # TODO: lähetä data HTTP Postilla serverille
+    response = requests.post("http://localhost:5000/uusimittaus", data = s)
+```
