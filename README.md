@@ -2,6 +2,8 @@
 
 Tässä esimerkissä näytetään, miten mittausdataa voidaan näyttää web-sovelluksessa Google Chartin avulla niin, että data päivittyy reaaliaikaisesti.
 
+Ohjelma datageneratorclient.py (tai readdata.py) generoi simuloitua mittausdataa ja lähettää sen palvelinohjelmalla. Flaskilla toteutettu palvelinohjelma measserver.py vastaanottaa mittaukset ja välittää ne html-sivulle, jossa ne näytetään Google Chart -kaavioina. Palvelinohjelman ja html-sivun välisessä kommunikoinnissa käytetään socket.io:ta.
+
 ## Tiedostot
 
 ### datageneratorclient.py
@@ -23,3 +25,6 @@ Generoidut mittaukset lähetetään palvelimelle HTTP Postin avulla:
     # TODO: lähetä data HTTP Postilla serverille
     response = requests.post("http://localhost:5000/uusimittaus", data = s)
 ```
+### measserver.py
+
+Python Flask-ohjelma measserver.py vastaanottaa mittaukset ja välittää ne html-sivulle socket.io:n avulla.
