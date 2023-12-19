@@ -27,4 +27,23 @@ Generoidut mittaukset lähetetään palvelimelle HTTP Postin avulla:
 ```
 ### measserver.py
 
-Python Flask-ohjelma measserver.py vastaanottaa mittaukset ja välittää ne html-sivulle socket.io:n avulla.
+Python Flask-ohjelma measserver.py vastaanottaa mittaukset ja välittää ne html-sivulle socket.io:n avulla. Ohjelman alustukset ja käynnistytoimenpiteet on esitetty alla:
+
+```python
+import json
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO
+import json
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
+
+# Lista mittauksia varten
+measurements = []
+
+...
+
+if __name__ == '__main__':
+    socketio.run(app)
+```
