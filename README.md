@@ -59,7 +59,7 @@ Funktio get_line käsittelee juureen osoitetun sivupyynnön. Funktio avaa sivun 
 # Näytä mittaukset Google Chart -kaavion avulla
 @app.route('/')
 def get_line():
-    return render_template('linechart.html', result = measurements)
+    return render_template('linechart.html')
 ```
 Funktio new_meas ottaa vastaan HTTP POST:lla osoitteeseen /uusimittaus lähetetyn viestin. Viestissä oleva json-muotoinen mittaus deserialisoidaan. Alun perin sanakirjassa olleet tiedot (aika, x, y ja z) muunnetaan listamuotoon, sillä Google Charts vaatii tiedon listamuotoisena.
 
