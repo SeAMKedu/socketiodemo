@@ -104,3 +104,83 @@ Sivun rakenne on esitetty alla:
     </body>
   </html>
 ```
+Viivakaavio näytetään div-elementissä curve_chart ja taulukko div-elemntissä table_div.
+
+Google Chartin alustus ja socketio-viestin vastaanotto on esitetty alla:
+
+```javascript
+        google.charts.load('current', {'packages':['corechart', 'table']});
+        google.charts.setOnLoadCallback(init);
+
+        function init() {
+          var socket = io();
+          socket.on('my_response', function (data) {
+            var s = JSON.parse(data.result);
+            console.log(s)
+            drawChart(s)
+            drawTable(s)
+          })
+        }
+```
+
+Saapunut socketio-viesti sisältää listan mittauksia. Yksi mittausrivi on on myös listan muodossa (aika, x, y, z). Kun socketio-viesti on saapunut, se deserialisoidaan ja muunnettu tieto välitetään funktioille drawChart() ja drawTable().
+
+Funktio drawChart piirtää viivakaavion div-elementtiin curve_chart:
+
+```javascript
+        function drawChart(s) {
+          var data = new google.visualization.DataTable();
+            data.addColumn('number', 'time');
+            data.addColumn('number', 'x');
+            data.addColumn('number', 'y');
+            data.addColumn('number', 'z');
+            data.addRows(s);
+  
+          var options = {
+            title: 'Indoor positioning system data',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+          };
+  
+          var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+  
+          chart.draw(data, options);
+        }
+```
+
+Funktio drawTable tekee taulukon div-elementtiin table_div:
+
+```javascript
+        // https://developers.google.com/chart/interactive/docs/gallery/table 
+        function drawTable(s) {
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'time');
+          data.addColumn('number', 'x');
+          data.addColumn('number', 'y');
+          data.addColumn('number', 'z');
+          data.addRows(s);
+  
+          var table = new google.visualization.Table(document.getElementById('table_div'));
+  
+          table.draw(data, {showRowNumber: false, width: '100%'});
+        }
+```
+
+## Kirjastojen asennus ja ohjelmien ajaminen
+
+Ohjelmien ajamiseksi täytyy asentaa kirjastot Flask, Flask-SocketIO ja requests:
+
+```
+pip install requests
+pip install Flask
+pip install Flask-SocketIO 
+```
+
+Käynnistä ensin palvelinohjelma measserver.py (py measserver.py).
+
+Avaa sitten selaimesta sivu localhost:5000.
+
+Avaa sitten uusi terminaali ja käynnistä mittausdataa tuottava ohjelma, joko datageneratorclient.py tai readdata.py
+
+
+
