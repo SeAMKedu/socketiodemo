@@ -13,7 +13,7 @@ measurements = []
 # Näytä mittaukset Google Chart -kaavion avulla
 @app.route('/')
 def get_line():
-    return render_template('linechart.html', result = measurements)
+    return render_template('linechart.html')
 
 # Otetaan vastaan HTTP POSTilla lähetty mittaus ja laitetaan se listaan
 @app.route('/uusimittaus', methods=['POST'])
