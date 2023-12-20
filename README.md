@@ -1,4 +1,5 @@
 # Python Flask, Socket.io ja Google Charts
+[![DOI](https://zenodo.org/badge/733807414.svg)](https://zenodo.org/doi/10.5281/zenodo.10409021)
 
 Tässä esimerkissä näytetään, miten mittausdataa voidaan näyttää web-sovelluksessa Google Chartin avulla niin, että data päivittyy reaaliaikaisesti.
 
